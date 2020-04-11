@@ -299,5 +299,30 @@ namespace ProjectTemp.Helpers
             Parameters[1] = new MySqlParameter("@trainID", trainID);
             return Execute_Data_Query_Store_Procedure("AssignMechanic", Parameters);
         }
+
+        public DataTable FindTicket(int routeNumber)
+        {
+            MySqlParameter[] Parameters = new MySqlParameter[1];
+            Parameters[0] = new MySqlParameter("@routeNumber", routeNumber);
+            return Execute_Data_Query_Store_Procedure("FindTicket", Parameters);
+        }
+
+        public DataTable AdjustPrice(int routeNumber,string classType,int price)
+        {
+            MySqlParameter[] Parameters = new MySqlParameter[3];
+            Parameters[0] = new MySqlParameter("@routeNumber", routeNumber);
+            Parameters[1] = new MySqlParameter("@classType", classType);
+            Parameters[2] = new MySqlParameter("@priceUpdate", price);
+            return Execute_Data_Query_Store_Procedure("AdjustPrice", Parameters);
+        }
+
+        public DataTable AddStation(int routeNumber, string stationName)
+        {
+            MySqlParameter[] Parameters = new MySqlParameter[2];
+            Parameters[0] = new MySqlParameter("@routeNumber", routeNumber);
+            Parameters[1] = new MySqlParameter("@stationName", stationName);
+            return Execute_Data_Query_Store_Procedure("AddStation", Parameters);
+        }
+
     }
 }

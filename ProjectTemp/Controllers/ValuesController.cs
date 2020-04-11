@@ -13,6 +13,7 @@ namespace ProjectTemp.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        
         // GET api/ValuesController/GetValues
         [HttpGet]
         [Route("GetValues")]
@@ -20,7 +21,7 @@ namespace ProjectTemp.Controllers
         {
             return new string[] { "value1", "value2" };
         }
-
+        /*
         // GET api/ValuesController/GetValuesById?id=5
         [HttpGet]
         [Route("GetValuesById")]
@@ -48,6 +49,7 @@ namespace ProjectTemp.Controllers
             string empBdate = (string)emp["empBdate"];
             
         }
+        */
 
         [HttpPost]
         [Route("train/AddTrain")]
@@ -113,6 +115,29 @@ namespace ProjectTemp.Controllers
         {
             DatabaseModel dm = new DatabaseModel();
             return Ok(dm.AssignMechanic(mechanicID, trainID));
+        }
+
+        [HttpGet]
+        [Route("ticket/FindTicket")]
+        public ActionResult<IEnumerable<string>> FindTicket(int routeNumber)
+        {
+            DatabaseModel dm = new DatabaseModel();
+            return Ok(dm.FindTicket(routeNumber));
+        }
+
+        [HttpPut]
+        [Route("company/AdjustPrice")]
+        public ActionResult<IEnumerable<string>> AdjustPrice(int routeNumber,string classType,int price)
+        {
+            DatabaseModel dm = new DatabaseModel();
+            return Ok(dm.AdjustPrice(routeNumber, classType, price));
+        }
+        [HttpPost]
+        [Route("route/AddStation")]
+        public ActionResult<IEnumerable<string>> AddStation(int routeNumber, string stationName)
+        {
+            DatabaseModel dm = new DatabaseModel();
+            return Ok(dm.AddStation(routeNumber, stationName));
         }
     }
 }
